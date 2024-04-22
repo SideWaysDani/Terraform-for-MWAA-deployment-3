@@ -9,37 +9,31 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+stages:
+- stage: deploy_stage
+  displayName: terraform stage
+  jobs:
+  - job: deploy_job
+    displayName: terraform job
+    steps:
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
-
-- task: TerraformInstaller@0
-  displayName: 'Install Terraform'
-  inputs:
-    terraformVersion: 'latest' 
-
-- task: TerraformTaskV2@2
-  displayName: 'Terraform Init'
-  inputs:
-    provider: 'aws'
-    command: 'init'
-    backendAzureRmContainer: 
-    backendAzureRmStorageAccountName: 
-- task: TerraformTaskV2@2
-  displayName: 'Terraform Plan'
-  inputs:
-    provider: 'aws'
-    command: 'plan'
-    environmentServiceNameAWS: 'my-aws-connection' 
-   
-- task: TerraformTaskV2@2 
-  displayName: 'Terraform Apply'
-  inputs:
-    provider: 'aws'
-    command: 'apply'
-    environmentServiceNameAWS: 'my-aws-connection' 
+    - task: TerraformInstaller@0
+      displayName: 'Install Terraform'
+      inputs:
+        terraformVersion: 'latest' 
+    - task: TerraformTaskV4@4
+      inputs:
+        provider: 'aws'
+        command: 'init'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
+        backendServiceAWS: 'aws-us-east-1'
+        backendAWSBucketName: 'test-airflow-s3-bucket'
+        backendAWSKey: 'tf/terraform.tfstate'
+        
+    - task: TerraformTaskV4@4
+      inputs:
+        provider: 'aws'
+        command: 'plan'
+        workingDirectory: '$(System.DefaultWorkingDirectory)terraform-aws-mwaa/examples/basic'
+        environmentServiceNameAWS: 'aws-us-east-1'
+        
