@@ -17,3 +17,29 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+
+- task: TerraformInstaller@0
+  displayName: 'Install Terraform'
+  inputs:
+    terraformVersion: 'latest' 
+
+- task: TerraformTaskV2@2
+  displayName: 'Terraform Init'
+  inputs:
+    provider: 'aws'
+    command: 'init'
+    backendAzureRmContainer: 
+    backendAzureRmStorageAccountName: 
+- task: TerraformTaskV2@2
+  displayName: 'Terraform Plan'
+  inputs:
+    provider: 'aws'
+    command: 'plan'
+    environmentServiceNameAWS: 'my-aws-connection' 
+   
+- task: TerraformTaskV2@2 
+  displayName: 'Terraform Apply'
+  inputs:
+    provider: 'aws'
+    command: 'apply'
+    environmentServiceNameAWS: 'my-aws-connection' 
