@@ -31,5 +31,5 @@ stages:
         provider: 'aws'
         command: 'plan'
         workingDirectory: '$(System.DefaultWorkingDirectory)terraform-aws-mwaa/examples/basic'
-        environmentServiceNameAWS: 'aws-us-east-1'
-        
+        backendServiceAWS: 'aws-us-east-1'
+   
