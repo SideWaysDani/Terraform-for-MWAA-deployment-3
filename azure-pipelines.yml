@@ -17,6 +17,18 @@ stages:
       displayName: 'Install Terraform'
       inputs:
         terraformVersion: 'latest' 
+    - task: PowerShell@2 # Use PowerShell@2 if you have a Windows agent
+      inputs:
+        targetType: 'inline' 
+        script: |
+          # Assuming your VPC module structure is within a 'modules/vpc' directory
+          TF_MODULE_PATH=".terraform/modules/vpc/main.tf"
+
+          # Remove the 'enable_classiclink' line 
+          sed -i '/enable_classiclink/d' $TF_MODULE_PATH
+
+          # Remove the 'enable_classiclink_dns_support' line
+          sed -i '/enable_classiclink_dns_support/d' $TF_MODULE_PATH     
     - task: TerraformTaskV4@4
       inputs:
         provider: 'aws'
