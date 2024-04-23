@@ -15,15 +15,8 @@ module "mwaa" {
   # ... Assuming your module handles VPC and security groups internally...
   # ... If not, you'd likely need to pass VPC and subnet references.
 
-  # Potential Airflow configuration (If your module supports it):
-  airflow_configuration_options = {
-    "core.load_default_connections" = "false"
-    "core.load_examples"            = "false" 
-    # ... other Airflow config options ...
-  }
 
-  # Assuming a variable 'environment_class' in your module:
-  environment_class = "mw1.medium" 
+
 
   tags = var.tags 
 }
