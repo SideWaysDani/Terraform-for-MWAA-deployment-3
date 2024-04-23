@@ -22,7 +22,7 @@ stages:
         targetType: 'inline' 
         script: |
           # Assuming your VPC module structure is within a 'modules/vpc' directory
-          TF_MODULE_PATH=".terraform/modules/vpc/main.tf"
+          TF_MODULE_PATH="./.terraform/modules/vpc/main.tf"
 
           # Remove the 'enable_classiclink' line 
           sed -i '/enable_classiclink/d' $TF_MODULE_PATH
