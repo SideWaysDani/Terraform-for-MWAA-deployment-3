@@ -9,13 +9,8 @@ provider "aws" {
 
 module "mwaa" {
   source = "../.."  
-  name   = var.mwaa_name 
+  name   = var.name 
   region = var.region 
-
-  # ... Assuming your module handles VPC and security groups internally...
-  # ... If not, you'd likely need to pass VPC and subnet references.
-
-
 
 
   tags = var.tags 
