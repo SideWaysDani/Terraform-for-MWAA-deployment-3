@@ -26,4 +26,9 @@ stages:
         backendAWSBucketName: 'test-airflow-s3-bucket'
         backendAWSKey: 'tf/terraform.tfstate'
         commandOptions: '-upgrade'
-  
+    - task: TerraformTaskV4@4
+      inputs:
+        provider: 'aws'
+        command: 'apply'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
+        environmentServiceNameAWS: 'aws-us-east-1'
