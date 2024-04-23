@@ -10,7 +10,9 @@ provider "aws" {
 module "mwaa" {
   source = "../.."  
   name   = var.name 
-  region = var.region 
+
+private_subnet_ids = module.vpc.private_subnets
+
 
 
   tags = var.tags 
