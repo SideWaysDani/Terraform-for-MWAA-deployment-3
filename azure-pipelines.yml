@@ -24,7 +24,7 @@ stages:
         command: 'init'
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
         backendServiceAWS: 'aws-us-east-1'
-        backendAWSBucketName: 'test-airflow-s3-bucket'
+        backendAWSBucketName: 'azure-terraform-state-s3-bucket'
         backendAWSKey: 'tf/terraform.tfstate'
         commandOptions: '-upgrade' 
     
@@ -33,4 +33,5 @@ stages:
       inputs:
         provider: 'aws'
         command: 'plan'
-        backendServiceAWS: 'aws-us-east-1'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
+        environmentServiceNameAWS: 'aws-us-east-1'
