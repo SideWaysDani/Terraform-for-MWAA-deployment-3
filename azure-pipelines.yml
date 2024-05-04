@@ -17,20 +17,15 @@ stages:
       displayName: 'Install Terraform'
       inputs:
         terraformVersion: 'latest'   
-    - task: TerraformTaskV4@4
-      inputs:
-        provider: 'aws'
-        command: 'init'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
-        backendServiceAWS: 'aws-us-east-1'
-        backendAWSBucketName: 'test-airflow-s3-bucket'
-        backendAWSKey: 'tf/terraform.tfstate'
-        commandOptions: '-upgrade'
+  
+  #  - task: TerraformTaskV4@4
+   #   inputs:
+    #    provider: 'aws'
+     #   command: 'init'
+      #  workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
+       # backendServiceAWS: 'aws-us-east-1'
+        #backendAWSBucketName: 'test-airflow-s3-bucket'
+        #backendAWSKey: 'tf/terraform.tfstate'
+        #commandOptions: '-upgrade' 
     
-    
-    - task: TerraformTaskV4@4
-      inputs:
-        provider: 'aws'
-        command: 'destroy'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
-        environmentServiceNameAWS: 'aws-us-east-1'
+ 
