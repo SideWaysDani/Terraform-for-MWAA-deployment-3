@@ -33,3 +33,4 @@ stages:
       inputs:
         provider: 'aws'
         command: 'plan'
+        backendServiceAWS: 'aws-us-east-1'
