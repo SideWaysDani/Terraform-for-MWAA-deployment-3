@@ -1,6 +1,6 @@
 variable "name" {
   description = "Name of MWAA Environment"
-  default     = "basic-mwaa"
+  default     = "azure-pipeline-mwaa"
   type        = string
 }
 
