@@ -27,7 +27,7 @@ module "mwaa" {
   airflow_version   = "2.8.1"
   environment_class = "mw1.medium"
   create_s3_bucket  = false
-  source_bucket_arn = aws_s3_bucket.this.arn
+  source_bucket_arn = "arn:aws:s3:::sp-classifier-mwaa"
   dag_s3_path       = "dags"
 
   ## If uploading requirements.txt or plugins, you can enable these via these options
