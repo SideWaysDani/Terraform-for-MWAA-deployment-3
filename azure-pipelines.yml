@@ -37,6 +37,12 @@ stages:
         environmentServiceNameAWS: 'aws-us-east-1'
         commandOptions: '-out'
       
+    - task: ManualIntervention@7
+      inputs:
+        instructions: 'Validate destruction after everything checking the created mwaa environment'
+        emailRecipients: 'daniyal.asim1999@gmail.com'
+        onTimeout: 'reject'  
+         
     - task: TerraformTaskV4@4
       inputs:
         provider: 'aws'
@@ -44,8 +50,10 @@ stages:
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
         backendAWSBucketName: 'azure-terraform-state-s3-bucket'
         backendAWSKey: 'tf/terraform.tfstate'
-        commandOptions: '-detailed-exitcode'
         environmentServiceNameAWS: 'aws-us-east-1'
+
+
+    
 
     - task: TerraformTaskV4@4
       inputs:
