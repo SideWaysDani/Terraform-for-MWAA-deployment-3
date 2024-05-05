@@ -36,3 +36,23 @@ stages:
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
         environmentServiceNameAWS: 'aws-us-east-1'
         commandOptions: '-out'
+      
+    - task: TerraformTaskV4@4
+      inputs:
+        provider: 'aws'
+        command: 'apply'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
+        backendAWSBucketName: 'azure-terraform-state-s3-bucket'
+        backendAWSKey: 'tf/terraform.tfstate'
+        commandOptions: '-detailed-exitcode'
+        environmentServiceNameAWS: 'aws-us-east-1'
+
+    - task: TerraformTaskV4@4
+      inputs:
+        provider: 'aws'
+        command: 'destroy'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic' 
+        backendServiceAWS: 'aws-us-east-1'
+        backendAWSBucketName: 'azure-terraform-state-s3-bucket'
+        backendAWSKey: 'tf/terraform.tfstate'
+        environmentServiceNameAWS: 'aws-us-east-1'
