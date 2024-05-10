@@ -34,6 +34,7 @@ stages:
       inputs:
         provider: 'aws'
         command: 'plan'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
         environmentServiceNameAWS: 'aws-us-east-1'
  
 
