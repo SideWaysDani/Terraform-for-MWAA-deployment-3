@@ -24,7 +24,6 @@ stages:
         provider: 'aws'
         command: 'init'
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
-        backendServiceAWS: 'aws-us-east-1'
         commandOptions: '-upgrade' 
     
  
@@ -33,7 +32,6 @@ stages:
         provider: 'aws'
         command: 'plan'
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
-        environmentServiceNameAWS: 'aws-us-east-1'
         commandOptions: '-out'
       
     
@@ -51,5 +49,4 @@ stages:
         provider: 'aws'
         command: 'destroy'
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic' 
-        backendServiceAWS: 'aws-us-east-1'
         environmentServiceNameAWS: 'aws-us-east-1'
