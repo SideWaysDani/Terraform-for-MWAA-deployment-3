@@ -19,34 +19,34 @@ stages:
       inputs:
         terraformVersion: 'latest'   
   
+  
     - task: TerraformTaskV4@4
       inputs:
         provider: 'aws'
         command: 'init'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
-        commandOptions: '-upgrade' 
+        backendServiceAWS: 'aws-us-east-1'
+        backendAWSBucketName: 'azure-terraform-state-s3-bucket'
+        backendAWSKey: 'terraform.tfstate'
     
- 
+
     - task: TerraformTaskV4@4
       inputs:
         provider: 'aws'
         command: 'plan'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
-        commandOptions: '-out'
+        environmentServiceNameAWS: 'aws-us-east-1'
+ 
+
       
-    
     - task: TerraformTaskV4@4
       inputs:
         provider: 'aws'
         command: 'apply'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
         environmentServiceNameAWS: 'aws-us-east-1'
-
     
-
+    
+    
     - task: TerraformTaskV4@4
       inputs:
         provider: 'aws'
         command: 'destroy'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic' 
         environmentServiceNameAWS: 'aws-us-east-1'
