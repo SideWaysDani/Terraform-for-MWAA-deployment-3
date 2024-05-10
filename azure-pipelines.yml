@@ -18,7 +18,16 @@ stages:
       displayName: 'Install Terraform'
       inputs:
         terraformVersion: 'latest'   
-  
+
+
+    - task: PowerShell@2 
+      displayName: 'Set working directory'
+      inputs:
+        targetType: inline
+        script: |
+          cd $(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic
+          Write-Host "Working directory is now: $(pwd)"
+      
   
     - task: TerraformTaskV4@4
       inputs:
