@@ -46,7 +46,10 @@ stages:
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
         environmentServiceNameAWS: 'aws-us-east-1'
     
-    
+    - task: Wait@1
+      inputs:
+        Value: '5'
+        Unit: 'minutes'
     
     - task: TerraformTaskV4@4
       inputs:
