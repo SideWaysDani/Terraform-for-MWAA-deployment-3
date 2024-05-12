@@ -1,4 +1,4 @@
-/*
+
 output "mwaa_webserver_url" {
   description = "The webserver URL of the MWAA Environment"
   value       = module.mwaa.mwaa_webserver_url
@@ -28,4 +28,4 @@ output "mwaa_security_group_id" {
   description = "The ARN of the MWAA Environment"
   value       = module.mwaa.mwaa_security_group_id
 }
-*/
+
