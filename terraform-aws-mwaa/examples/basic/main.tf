@@ -16,7 +16,7 @@ locals {
   bucket_name = format("%s-%s", "aws-ia-mwaa", data.aws_caller_identity.current.account_id)
 }
 
-/*
+
 #-----------------------------------------------------------
 # NOTE: MWAA Airflow environment takes minimum of 20 mins
 #-----------------------------------------------------------
@@ -79,7 +79,7 @@ module "mwaa" {
   tags = var.tags
 
 }
-*/
+
 #---------------------------------------------------------------
 # Supporting Resources
 #---------------------------------------------------------------
