@@ -48,7 +48,7 @@ stages:
     
     - task: Wait@1
       inputs:
-        Value: '5'
+        Value: '180'
         Unit: 'minutes'
     
     - task: TerraformTaskV4@4
