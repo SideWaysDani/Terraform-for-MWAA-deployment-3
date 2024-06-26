@@ -62,7 +62,7 @@ stages:
 
 # Schedule configuration added below
 schedules:
-- cron: "30 15 * * *" # "min hour day" 
+- cron: "00 16 * * *" # "min hour day" 
   displayName: Run every day at 3:30 PM UTC
   branches:
     include:
