@@ -29,12 +29,13 @@ stages:
         backendAWSKey: 'terraform.tfstate'
     
 
- 
-  
-         
     - task: TerraformTaskV4@4
       inputs:
         provider: 'aws'
-        command: 'destroy'
+        command: 'plan'
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
         environmentServiceNameAWS: 'aws-us-east-1'
+ 
+
+  
+         
