@@ -5,6 +5,10 @@
 pool:
   name: Terraform-Mwaa-Pool
 
+variables:
+  mwaa_environment_name: 'my-mwaa-env'  # Replace with your desired name
+  source_bucket_arn: 'arn:aws:s3:::sp-classifier-mwaa'  # Replace with your actual bucket ARN
+
 stages:
 - stage: deploy_stage
   displayName: terraform stage
@@ -39,26 +43,26 @@ stages:
  
 
       
-    - task: TerraformTaskV4@4
-      inputs:
-        provider: 'aws'
-        command: 'apply'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
-        environmentServiceNameAWS: 'aws-us-east-1'
+#    - task: TerraformTaskV4@4
+#      inputs:
+#        provider: 'aws'
+#        command: 'apply'
+#        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
+#        environmentServiceNameAWS: 'aws-us-east-1'
 
  
-    - task: Wait@1
-      inputs:
-        Value: '120'
-        Unit: 'minutes'
+#    - task: Wait@1
+#      inputs:
+#        Value: '120'
+#        Unit: 'minutes'
   
  
-    - task: TerraformTaskV4@4
-      inputs:
-        provider: 'aws'
-        command: 'destroy'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
-        environmentServiceNameAWS: 'aws-us-east-1'
+#    - task: TerraformTaskV4@4
+#      inputs:
+#        provider: 'aws'
+#        command: 'destroy'
+#        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
+#        environmentServiceNameAWS: 'aws-us-east-1'
 
 # Schedule configuration added below
 schedules:
