@@ -31,9 +31,7 @@ stages:
 
  
   
-  - job: destroy_job
-    displayName: Destroy Job
-    steps:        
+         
     - task: TerraformTaskV4@4
       inputs:
         provider: 'aws'
