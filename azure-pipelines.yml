@@ -10,47 +10,11 @@ stages:
 - stage: deploy_stage
   displayName: terraform stage
   jobs:
-  - job: deploy_job
-    displayName: terraform job
-    steps:
-
-    - task: TerraformInstaller@1
-      displayName: 'Install Terraform'
-      inputs:
-        terraformVersion: 'latest'   
-
-
-    - task: TerraformTaskV4@4
-      inputs:
-        provider: 'aws'
-        command: 'init'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
-        backendServiceAWS: 'aws-us-east-1'
-        backendAWSBucketName: 'azure-terraform-state-s3-bucket'
-        backendAWSKey: 'terraform.tfstate'
-    
-
-    - task: TerraformTaskV4@4
-      inputs:
-        provider: 'aws'
-        command: 'plan'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
-        environmentServiceNameAWS: 'aws-us-east-1'
  
-
-      
-    - task: TerraformTaskV4@4
-      inputs:
-        provider: 'aws'
-        command: 'apply'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
-        environmentServiceNameAWS: 'aws-us-east-1'
-    
-    - task: Wait@1
-      inputs:
-        Value: '180'
-        Unit: 'minutes'
-    
+  
+  - job: destroy_job
+    displayName: Destroy Job
+    steps:        
     - task: TerraformTaskV4@4
       inputs:
         provider: 'aws'
