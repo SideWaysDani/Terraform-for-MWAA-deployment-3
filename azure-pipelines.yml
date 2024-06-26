@@ -10,6 +10,17 @@ stages:
 - stage: deploy_stage
   displayName: terraform stage
   jobs:
+  - job: deploy_job
+    displayName: terraform job
+    steps:
+
+    - task: TerraformInstaller@1
+      displayName: 'Install Terraform'
+      inputs:
+        terraformVersion: 'latest'   
+
+    
+
  
   
   - job: destroy_job
