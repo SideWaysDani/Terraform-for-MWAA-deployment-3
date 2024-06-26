@@ -1,5 +1,4 @@
 
-
 trigger:
 - main
 
@@ -10,6 +9,7 @@ stages:
 - stage: deploy_stage
   displayName: terraform stage
   jobs:
+ 
   - job: deploy_job
     displayName: terraform job
     steps:
@@ -27,7 +27,7 @@ stages:
         backendServiceAWS: 'aws-us-east-1'
         backendAWSBucketName: 'azure-terraform-state-s3-bucket'
         backendAWSKey: 'terraform.tfstate'
-  
+    
 
     - task: TerraformTaskV4@4
       inputs:
@@ -37,5 +37,30 @@ stages:
         environmentServiceNameAWS: 'aws-us-east-1'
  
 
+      
+    - task: TerraformTaskV4@4
+      inputs:
+        provider: 'aws'
+        command: 'apply'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
+        environmentServiceNameAWS: 'aws-us-east-1'
+
+  - job: wait_job
+    timeoutInMinutes: 190
+    displayName: wait job
+    steps:  
+    - task: Wait@1
+      inputs:
+        Value: '10'
+        Unit: 'minutes'
   
-         
+  - job: destroy_job
+    displayName: Destroy Job
+    steps:        
+    - task: TerraformTaskV4@4
+      inputs:
+        provider: 'aws'
+        command: 'destroy'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
+        environmentServiceNameAWS: 'aws-us-east-1'
+
