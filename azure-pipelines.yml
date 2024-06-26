@@ -45,18 +45,13 @@ stages:
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
         environmentServiceNameAWS: 'aws-us-east-1'
 
-  - job: wait_job
-    timeoutInMinutes: 190
-    displayName: wait job
-    steps:  
+ 
     - task: Wait@1
       inputs:
         Value: '10'
         Unit: 'minutes'
   
-  - job: destroy_job
-    displayName: Destroy Job
-    steps:        
+ 
     - task: TerraformTaskV4@4
       inputs:
         provider: 'aws'
