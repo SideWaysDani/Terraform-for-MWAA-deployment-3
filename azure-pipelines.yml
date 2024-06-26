@@ -59,3 +59,10 @@ stages:
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
         environmentServiceNameAWS: 'aws-us-east-1'
 
+# Schedule configuration added below
+schedules:
+- cron: "0 14 * * *"  # This runs the pipeline daily at 2:00 PM UTC
+  displayName: Run every day at 2 PM UTC
+  branches:
+    include:
+    - main  # You can adjust the branch to target specific branches for execution
