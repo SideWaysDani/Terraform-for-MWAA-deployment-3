@@ -1,6 +1,6 @@
 
-trigger:
-- main
+#trigger:
+#- main
 
 pool:
   name: Terraform-Mwaa-Pool
@@ -12,6 +12,7 @@ stages:
  
   - job: deploy_job
     displayName: terraform job
+    timeoutInMinutes: 240
     steps:
 
     - task: TerraformInstaller@1
@@ -48,7 +49,7 @@ stages:
  
     - task: Wait@1
       inputs:
-        Value: '10'
+        Value: '120'
         Unit: 'minutes'
   
  
@@ -61,8 +62,8 @@ stages:
 
 # Schedule configuration added below
 schedules:
-- cron: "0 14 * * *"  # This runs the pipeline daily at 2:00 PM UTC
-  displayName: Run every day at 2 PM UTC
+- cron: "30 15 * * *" # "min hour day" 
+  displayName: Run every day at 3:30 PM UTC
   branches:
     include:
     - main  # You can adjust the branch to target specific branches for execution
