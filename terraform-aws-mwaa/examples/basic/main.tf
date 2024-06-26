@@ -23,11 +23,11 @@ locals {
 module "mwaa" {
   source = "../.."
 
-  name              = var.mwaa_environment_name
+  name              = var.TF_VAR_mwaa_environment_name
   airflow_version   = "2.8.1"
   environment_class = "mw1.medium"
   create_s3_bucket  = false
-  source_bucket_arn = var.source_bucket_arn
+  source_bucket_arn = var.TF_VAR_source_bucket_arn
   dag_s3_path       = "dags"
 
   ## If uploading requirements.txt or plugins, you can enable these via these options
