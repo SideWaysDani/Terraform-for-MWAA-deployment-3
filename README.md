@@ -1,5 +1,5 @@
-# Terraform-for-MWAA-deployment
-Terraform For Managed Workflows for Apache Airflow (MWAA) deployment
+# Terraform-for-MWAA-deployment - 2
+Terraform For Managed Workflows for Apache Airflow (MWAA) deployment for use of 2nd azure devops pipleine for 2nd group of dags
 
    ✅ Deployment examples can be found under [examples](https://github.com/aws-ia/terraform-aws-mwaa/tree/main/examples) folder.
 
