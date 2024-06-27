@@ -5,10 +5,6 @@
 pool:
   name: Terraform-Mwaa-Pool
 
-variables:
-  mwaa_environment_name: 'my-mwaa-env' 
-  source_bucket_arn: 'arn:aws:s3:::sp-classifier-mwaa'  
-
 stages:
 - stage: deploy_stage
   displayName: terraform stage
@@ -16,7 +12,7 @@ stages:
  
   - job: deploy_job
     displayName: terraform job
-    timeoutInMinutes: 240
+    timeoutInMinutes: 0
     steps:
 
     - task: TerraformInstaller@1
@@ -40,31 +36,29 @@ stages:
         command: 'plan'
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
         environmentServiceNameAWS: 'aws-us-east-1'
-        environmentVariables:
-        TF_VAR_mwaa_environment_name: 'my-mwaa-environment'  # Replace with your desired name
-        TF_VAR_source_bucket_arn: 'arn:aws:s3:::sp-classifier-mwaa'  # Replace with your actual bucket ARN
+ 
 
       
-#    - task: TerraformTaskV4@4
-#      inputs:
-#        provider: 'aws'
-#        command: 'apply'
-#        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
-#        environmentServiceNameAWS: 'aws-us-east-1'
+    - task: TerraformTaskV4@4
+      inputs:
+        provider: 'aws'
+        command: 'apply'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
+        environmentServiceNameAWS: 'aws-us-east-1'
 
  
-#    - task: Wait@1
-#      inputs:
-#        Value: '120'
-#        Unit: 'minutes'
+    - task: Wait@1
+      inputs:
+        Value: '10'
+        Unit: 'minutes'
   
  
-#    - task: TerraformTaskV4@4
-#      inputs:
-#        provider: 'aws'
-#        command: 'destroy'
-#        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
-#        environmentServiceNameAWS: 'aws-us-east-1'
+    - task: TerraformTaskV4@4
+      inputs:
+        provider: 'aws'
+        command: 'destroy'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
+        environmentServiceNameAWS: 'aws-us-east-1'
 
 # Schedule configuration added below
 schedules:
