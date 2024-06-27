@@ -39,31 +39,31 @@ stages:
  
 
       
-    - task: TerraformTaskV4@4
-      inputs:
-        provider: 'aws'
-        command: 'apply'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
-        environmentServiceNameAWS: 'aws-us-east-1'
+#    - task: TerraformTaskV4@4
+#      inputs:
+#        provider: 'aws'
+#        command: 'apply'
+#        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
+#        environmentServiceNameAWS: 'aws-us-east-1'
 
  
-    - task: Wait@1
-      inputs:
-        Value: '10'
-        Unit: 'minutes'
+#    - task: Wait@1
+#      inputs:
+#        Value: '1'
+#        Unit: 'minutes'
   
  
-    - task: TerraformTaskV4@4
-      inputs:
-        provider: 'aws'
-        command: 'destroy'
-        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
-        environmentServiceNameAWS: 'aws-us-east-1'
+#    - task: TerraformTaskV4@4
+#      inputs:
+#        provider: 'aws'
+#        command: 'destroy'
+#        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
+#        environmentServiceNameAWS: 'aws-us-east-1'
 
 # Schedule configuration added below
-schedules:
-- cron: "00 16 * * *" # "min hour day" 
-  displayName: Run every day at 3:30 PM UTC
-  branches:
-    include:
-    - main  # You can adjust the branch to target specific branches for execution
+#schedules:
+#- cron: "30 15 * * *" # "min hour day" 
+#  displayName: Run every day at 3:30 PM UTC
+#  branches:
+#    include:
+#    - main  # You can adjust the branch to target specific branches for execution
