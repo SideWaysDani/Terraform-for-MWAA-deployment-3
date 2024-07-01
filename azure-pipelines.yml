@@ -63,7 +63,7 @@ stages:
         environmentServiceNameAWS: 'aws-us-east-1'      
     - task: Wait@1
       inputs:
-        Value: '30'
+        Value: '20'
         Unit: 'minutes'
   
   
