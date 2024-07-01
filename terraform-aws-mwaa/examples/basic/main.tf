@@ -24,7 +24,7 @@ module "mwaa" {
   source = "../.."
 
   name              = var.name
-  airflow_version   = "2.7"
+  airflow_version   = "2.7.2"
   environment_class = "mw1.medium"
   create_s3_bucket  = false
   source_bucket_arn = "arn:aws:s3:::sp-classifier-mwaa-2"
