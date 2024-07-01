@@ -1,10 +1,4 @@
-terraform {
-  backend "s3" {
-    bucket = "azure-terraform-state-s3-bucket"  # Replace with your S3 bucket name
-    key    = "terraform.tfstate"  # Optional: Specify the key name within the bucket (defaults to terraform.tfstate)
-    region = "aws-us-east-1"        # Replace with the AWS region where your bucket resides
-  }
-}
+
 
 
 
