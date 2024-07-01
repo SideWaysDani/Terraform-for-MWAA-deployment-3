@@ -19,5 +19,5 @@ variable "tags" {
 variable "vpc_cidr" {
   description = "VPC CIDR for MWAA"
   type        = string
-  default     = "10.1.0.0/16"
+  default     = "10.2.0.0/16"
 }
