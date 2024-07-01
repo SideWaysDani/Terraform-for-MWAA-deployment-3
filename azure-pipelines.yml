@@ -49,7 +49,7 @@ stages:
  
     - task: Wait@1
       inputs:
-        Value: '120'
+        Value: '60'
         Unit: 'minutes'
   
  
