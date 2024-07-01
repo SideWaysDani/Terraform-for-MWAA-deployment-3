@@ -37,7 +37,14 @@ stages:
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
         environmentServiceNameAWS: 'aws-us-east-1'
  
-
+    - task: TerraformTaskV4@4
+      inputs:
+        provider: 'aws'
+        command: 'show'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
+        outputTo: 'console'
+        outputFormat: 'default'
+        environmentServiceNameAWS: 'aws-us-east-1'      
       
     - task: TerraformTaskV4@4
       inputs:
@@ -46,13 +53,20 @@ stages:
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
         environmentServiceNameAWS: 'aws-us-east-1'
 
- 
+    - task: TerraformTaskV4@4
+      inputs:
+        provider: 'aws'
+        command: 'show'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
+        outputTo: 'console'
+        outputFormat: 'default'
+        environmentServiceNameAWS: 'aws-us-east-1'      
     - task: Wait@1
       inputs:
-        Value: '60'
+        Value: '30'
         Unit: 'minutes'
   
- 
+  
     - task: TerraformTaskV4@4
       inputs:
         provider: 'aws'
