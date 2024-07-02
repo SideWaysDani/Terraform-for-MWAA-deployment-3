@@ -25,7 +25,7 @@ stages:
         provider: 'aws'
         command: 'init'
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
-#        backendServiceAWS: 'aws-us-east-1'
+        backendServiceAWS: 'aws-us-east-1'
 #        backendAWSBucketName: 'azure-terraform-state-s3-bucket'
 #        backendAWSKey: 'terraform.tfstate'
     
