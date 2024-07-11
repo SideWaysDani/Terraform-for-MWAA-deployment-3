@@ -38,11 +38,7 @@ module "mwaa" {
   source_bucket_arn = "arn:aws:s3:::sp-classifier-mwaa-3"
   dag_s3_path       = "dags"
 
-  ## If uploading requirements.txt or plugins, you can enable these via these options
-  plugins_s3_path = "s3://sp-classifier-mwaa-3/plugins/plugins.zip"
-  requirements_s3_path = "s3://sp-classifier-mwaa-3/requirements/requirements.txt"
-  startup_script_s3_uri = "s3://sp-classifier-mwaa-3/startup.sh"  # Replace with your S3 bucket and script path
-
+ 
 
   logging_configuration = {
     dag_processing_logs = {
