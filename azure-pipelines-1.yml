@@ -1,0 +1,47 @@
+
+#trigger:
+#- main
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+- stage: deploy_stage
+  displayName: terraform stage
+  jobs:
+ 
+  - job: deploy_job
+    displayName: terraform job
+    timeoutInMinutes: 0
+    steps:
+
+    - task: TerraformInstaller@1
+      displayName: 'Install Terraform'
+      inputs:
+        terraformVersion: 'latest'   
+
+    - task: TerraformTaskV4@4
+      inputs:
+        provider: 'aws'
+        command: 'init'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
+        backendServiceAWS: 'aws-us-east-1'
+        backendAWSBucketName: 'azure-terraform-state-s3-bucket-3'
+        backendAWSKey: 'terraform.tfstate'
+    
+
+  
+    - task: TerraformTaskV4@4
+      inputs:
+        provider: 'aws'
+        command: 'destroy'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
+        environmentServiceNameAWS: 'aws-us-east-1'
+
+# Schedule configuration added below
+#schedules:
+#- cron: "30 15 * * *" # "min hour day" 
+#  displayName: Run every day at 3:30 PM UTC
+#  branches:
+#    include:
+#    - main  # You can adjust the branch to target specific branches for execution
