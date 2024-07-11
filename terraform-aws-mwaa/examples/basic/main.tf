@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket = "azure-terraform-state-s3-bucket"  # Replace with your S3 bucket name
+    bucket = "azure-terraform-state-s3-bucket-3"  # Replace with your S3 bucket name
     key    = "terraform.tfstate"  # Optional: Specify the key name within the bucket (defaults to terraform.tfstate)
     region = "aws-us-east-1"        # Replace with the AWS region where your bucket resides
   }
@@ -35,12 +35,14 @@ module "mwaa" {
   airflow_version   = "2.7.2"
   environment_class = "mw1.medium"
   create_s3_bucket  = false
-  source_bucket_arn = "arn:aws:s3:::sp-classifier-mwaa-2"
+  source_bucket_arn = "arn:aws:s3:::sp-classifier-mwaa-3"
   dag_s3_path       = "dags"
 
   ## If uploading requirements.txt or plugins, you can enable these via these options
-  #plugins_s3_path      = "plugins.zip"
-  #requirements_s3_path = "requirements.txt"
+  plugins_s3_path = "s3://sp-classifier-mwaa-3/plugins/plugins.zip"
+  requirements_s3_path = "s3://sp-classifier-mwaa-3/requirements/requirements.txt"
+  startup_script_s3_uri = "s3://sp-classifier-mwaa-3/startup.sh"  # Replace with your S3 bucket and script path
+
 
   logging_configuration = {
     dag_processing_logs = {
