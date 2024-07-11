@@ -3,7 +3,7 @@
 #- main
 
 pool:
-  name: Terraform-Mwaa-Pool
+  vmImage: ubuntu-latest
 
 stages:
 - stage: deploy_stage
@@ -26,7 +26,7 @@ stages:
         command: 'init'
         workingDirectory: '$(System.DefaultWorkingDirectory)/terraform-aws-mwaa/examples/basic'
         backendServiceAWS: 'aws-us-east-1'
-        backendAWSBucketName: 'azure-terraform-state-s3-bucket'
+        backendAWSBucketName: 'azure-terraform-state-s3-bucket-3'
         backendAWSKey: 'terraform.tfstate'
     
 
