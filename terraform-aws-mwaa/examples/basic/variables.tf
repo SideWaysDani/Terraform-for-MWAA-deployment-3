@@ -1,6 +1,6 @@
 variable "name" {
   description = "Name of MWAA Environment"
-  default     = "azure-pipeline-mwaa-2"
+  default     = "azure-pipeline-mwaa-3"
   type        = string
 }
 
@@ -19,5 +19,5 @@ variable "tags" {
 variable "vpc_cidr" {
   description = "VPC CIDR for MWAA"
   type        = string
-  default     = "10.2.0.0/16"
+  default     = "10.3.0.0/16"
 }
